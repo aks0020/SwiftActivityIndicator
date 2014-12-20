@@ -3,34 +3,36 @@
 //  SwiftActivityIndicator
 //
 //  Created by bohui.xie on 7/11/14.
+//  Modified by aks0020
 //  Copyright (c) 2014 xiebohui. All rights reserved.
-//
+//  
 
 import UIKit
-import QuartzCore
 
 class SwiftActivityIndicator: UIView {
     
-    var backgroundImageView: UIImageView
-    var loadingImageView: UIImageView
+    var backgroundImageView: UIImageView?
+    var loadingImageView: UIImageView?
 
-    var hidesWhenStopped:Bool
-    var _isAnimating:Bool
+    var hidesWhenStopped = true
+    var _isAnimating = false
     
-    init(frame: CGRect) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.backgroundImageView = UIImageView(image: UIImage(named: "icon_loading_background.png"))
         self.loadingImageView = UIImageView(image: UIImage(named: "icon_loading.png"))
-        self.hidesWhenStopped = true
-        self._isAnimating = false
-        super.init(frame: frame)
-        self.addSubview(self.backgroundImageView)
-        self.addSubview(self.loadingImageView)
+        self.addSubview(self.backgroundImageView!)
+        self.addSubview(self.loadingImageView!)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     override func layoutSubviews() {
         
-        self.backgroundImageView.frame = self.bounds
-        self.loadingImageView.frame = self.bounds
+        self.backgroundImageView!.frame = self.bounds
+        self.loadingImageView!.frame = self.bounds
         
     }
     
